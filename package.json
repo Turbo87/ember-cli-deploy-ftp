@@ -44,7 +44,8 @@
     "ember-cli-deploy-plugin"
   ],
   "dependencies": {
-    "ember-cli-babel": "^5.1.6"
+    "ember-cli-babel": "^5.1.6",
+    "ember-cli-deploy-plugin": "^0.2.5"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
