@@ -34,3 +34,12 @@ script:
   # Usually, it's ok to finish the test scenario without reverting
   #  to the addon's original dependency state, skipping "cleanup".
   - ember try $EMBER_TRY_SCENARIO test --skip-cleanup
+
+deploy:
+  provider: npm
+  email: tobias.bieniek@gmx.de
+  api_key:
+    secure: zib0XIDqXc5LjqI+sx3kvEhsRXWlROwZVOxiahHmU8yhqNQBiJtypOxLJGLve99XIuM5Fvoyq6O0zQFB4vtE1v2KsEAUjA6CmyY4wW2GfVPKXA13qow5fy/9CPrv5oqrS5+XmQzHBPXI0RkgfBornUsRp6HMyhrdsYiyRJ8m55yN3cjCDbeJC1Qb4OuSqIL0HQHnZSBkUM/blkVqy2xnbIogi/XVpnnP4wrD2h46MC6CRj2dx17l17cB6LaoGNGW0rFjEqXIbuE8EEfUCeRCLaTkSBXS0K1NMOBULi4ACvfOYUVTgvW3U2ENggkUnp64d+kOlpGkZoFreoC+NXH455EgTdIqhUK/9tHn5I9mivq6vPZ1cIb43q40BA7S3tWV5CxwlBEvU9QvpARCTAWsIuP5FByKUWqbtRcXHpddU3A2fxYrq/XfZqMwzuzI81XXye97VWDShffA5U/+M/yjdq+WpDgboTsbIak6uF4DP1bhmKrcyOUWxT2rUuYBneL81NgmjTlW3TImcf7HWMHCGAT/5S3wzURoYDMq1csGR2YRYu7UxwJDSQ5XgysMHNRhNPZGRCz6OYjg0Oba3ubGiIV7AbaFONcdoLgmO6zBBjAVK9YpUpoJp+q+L4vcWVmfmCJlpRLZZ2AxQ8fI2fx67ei7uXU+KZr5S9KwISjftx0=
+  on:
+    tags: true
+    repo: Turbo87/ember-cli-deploy-ftp
