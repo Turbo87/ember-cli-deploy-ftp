@@ -1,26 +1,42 @@
-# Ember-cli-deploy-ftp
 
-This README outlines the details of collaborating on this Ember addon.
+ember-cli-deploy-ftp
+==============================================================================
 
-## Installation
+[ember-cli-deploy](http://ember-cli-deploy.github.io/ember-cli-deploy/)
+wrapper for [ftp-deploy](https://github.com/rickbergfalk/ftp-deploy)
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
 
-## Running
+Installation
+------------------------------------------------------------------------------
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+```
+npm install ember-cli-deploy-ftp
+```
 
-## Running Tests
 
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+Usage
+------------------------------------------------------------------------------
 
-## Building
+Add e.g. the following snippet to your `config/deploy.js` file:
+ 
+```js
+ENV.ftp = {
+  host: 'ftp.your-server.com',
+  username: 'johndoe',
+  password: process.env.FTP_PASSWORD,
+};
+```
 
-* `ember build`
+### Options
 
-For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+- `host` – __required__: FTP host name or IP address
+- `port` – __optional__: FTP server port (default: `21`)
+- `username` – __optional__: FTP username (default: `anonymous`)
+- `password` – __optional__: FTP password (default: `anonymous`)
+- `remoteRoot` – __optional__: deploy target folder on the FTP server (default: `/`)
+
+
+License
+------------------------------------------------------------------------------
+
+This project is licensed under the [MIT License](LICENSE.md).
