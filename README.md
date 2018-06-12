@@ -34,6 +34,8 @@ ENV.ftp = {
 - `username` – __optional__: FTP username (default: `anonymous`)
 - `password` – __optional__: FTP password (default: `anonymous`)
 - `remoteRoot` – __optional__: deploy target folder on the FTP server (default: `/`)
+- `include` – __optional__: included files (default: `['*', '**/*']`)
+- `exclude` – __optional__: excluded files (default: `[]`)
 
 
 License
