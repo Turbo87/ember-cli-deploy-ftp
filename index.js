@@ -1,14 +1,13 @@
-/* jshint node: true */
 'use strict';
 
-var BasePlugin = require('ember-cli-deploy-plugin');
-var FtpDeploy = require('ftp-deploy');
+const BasePlugin = require('ember-cli-deploy-plugin');
+const FtpDeploy = require('ftp-deploy');
 
 module.exports = {
   name: 'ember-cli-deploy-ftp',
 
-  createDeployPlugin: function(options) {
-    var DeployPlugin = BasePlugin.extend({
+  createDeployPlugin(options) {
+    let DeployPlugin = BasePlugin.extend({
       name: options.name,
 
       requiredConfig: ['host'],
@@ -23,12 +22,10 @@ module.exports = {
         sftp: false
       },
 
-      upload: function(context) {
-        var self = this;
+      async upload(context) {
+        let ftpDeploy = new FtpDeploy();
 
-        var ftpDeploy = new FtpDeploy();
-
-        var config = {
+        let config = {
           host: this.readConfig('host'),
           port: this.readConfig('port'),
           user: this.readConfig('username'),
@@ -43,22 +40,22 @@ module.exports = {
         this.log(
           `preparing to upload to ${config.sftp ? 'sftp' : 'ftp'}://${
             config.user
-          }@${config.host}`,
+          }@${config.host}${config.remoteRoot}`,
           {
             verbose: true,
           }
         );
 
-        ftpDeploy.on('uploading', function(data) {
-          self.log('uploading file `' + data.filename + '`', { verbose: true });
+        ftpDeploy.on('uploading', (data) => {
+          this.log('uploading file `' + data.filename + '`', { verbose: true });
         });
 
-        return ftpDeploy.deploy(config).then(function() {
-          self.log('upload complete', { verbose: true });
-        });
+        await ftpDeploy.deploy(config);
+
+        this.log('upload complete', { verbose: true });
       },
     });
 
     return new DeployPlugin();
-  }
+  },
 };
