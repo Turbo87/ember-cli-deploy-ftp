@@ -14,7 +14,7 @@
     "url": "https://github.com/Turbo87/ember-cli-deploy-ftp.git"
   },
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 12"
   },
   "author": "Tobias Bieniek <tobias.bieniek@gmail.com>",
   "license": "MIT",
