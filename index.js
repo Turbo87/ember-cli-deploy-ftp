@@ -19,27 +19,35 @@ module.exports = {
         password: 'anonymous',
         remoteRoot: '/',
         include: ['*', '**/*'],
-        exclude: []
+        exclude: [],
+        sftp: false
       },
 
       upload: function(context) {
         var self = this;
 
         var ftpDeploy = new FtpDeploy();
-        var host = this.readConfig('host');
 
         var config = {
-          host: host,
+          host: this.readConfig('host'),
           port: this.readConfig('port'),
           user: this.readConfig('username'),
           password: this.readConfig('password'),
           localRoot: context.distDir,
           remoteRoot: this.readConfig('remoteRoot'),
           include: this.readConfig('include'),
-          exclude: this.readConfig('exclude')
+          exclude: this.readConfig('exclude'),
+          sftp: this.readConfig('sftp')
         };
 
-        this.log('preparing to upload to FTP host `' + host + '`', { verbose: true });
+        this.log(
+          `preparing to upload to ${config.sftp ? 'sftp' : 'ftp'}://${
+            config.user
+          }@${config.host}`,
+          {
+            verbose: true,
+          }
+        );
 
         ftpDeploy.on('uploading', function(data) {
           self.log('uploading file `' + data.filename + '`', { verbose: true });
